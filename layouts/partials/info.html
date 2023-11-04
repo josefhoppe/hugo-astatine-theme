@@ -1,6 +1,7 @@
 <div class="head container grid sm:grid-cols-2 grid-cols-1
             justify-around flex-wrap items-center"
      itemscope itemtype="http://schema.org/Person">
+     {{ if .Params.imgname }}
     <div class="picture p-8 max-w-[80%] mx-auto basis-20 grow shrink"
          itemscope itemtype="http://schema.org/ImageObject">
         <picture>
@@ -9,13 +10,14 @@
             <source srcset="{{ .name }}"{{ if .type }} type="{{ .type }}"{{ end }}>
             {{ end }}
             {{ end }}
-            <source srcset="{{ .Site.Params.imgname.Name }}"
-                    {{ if .Site.Params.imgname.Type }} type="{{ .Site.Params.Imgname.Type }}"{{ end }}>
+            <source srcset="{{ .Params.imgname.Name }}"
+                    {{ if .Site.Params.imgname.Type }} type="{{ .Params.Imgname.Type }}"{{ end }}>
             <img class="main-image u-photo mx-auto"
-            itemprop="contentUrl" alt="{{ .Site.Params.Imgname.Alt }}"
-                 src="{{ .Site.Params.imgname.Name }}">
+            itemprop="contentUrl" alt="{{ .Params.Imgname.Alt }}"
+                 src="{{ .Params.imgname.Name }}">
         </picture>
     </div>
+    {{ end }}
     <div class="mx-4 ml-8 basis-60 grow shrink-2 leading-snug text-base">
         <a  class="u-url font-bold" rel="me" itemprop="url" href="{{ .Permalink }}">
             <h1 class="text-black dark:text-zinc-300 p-name border-0"
@@ -31,17 +33,21 @@
             {{range .Params.Address }}
             <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
             <span itemprop="streetAddress">
+                {{ if .name }}
                 {{ .name }}
                 <br>
+                {{ end }}
+                {{ if .street }}
                 {{ .street }}
+                <br>
+                {{ end }}
             </span>
-            <br>
             {{ with .postal_code }}<span itemprop="postalCode">{{ . }}</span>{{ end }}
-            {{ with .locality }}<span itemprop="addressLocality">{{ . }}</span>{{ end }}
-            <br>
+            {{ with .locality }}<span itemprop="addressLocality">{{ . }}</span><br>{{ end }}
             {{ with .email }}
-            <a href="mailto:{{ . }}">{{ . }}</a>
+            <a href="mailto:{{ . }}">{{ . }}</a><br>
             {{ end }}
+            <br>
             {{ with .emailimg }}
             <picture>
                 {{ if .dark }}

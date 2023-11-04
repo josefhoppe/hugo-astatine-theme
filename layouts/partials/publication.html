@@ -2,6 +2,7 @@
             my-1.5 p-2.5 rounded bg-slate-200 dark:bg-slate-700 box-border
             leading-tight justify-around" id="{{anchorize .title}}"
      itemscope itemtype="http://schema.org/ScholarlyArticle">
+     {{ if .image }}
     <div class="pub-image basis-40 grow-0 shrink" itemprop="image"
 
          itemscope itemtype="http://schema.org/ImageObject">
@@ -9,6 +10,7 @@
              itemprop="url" src="{{ .image }}"
              class="w-full"/>
     </div>
+    {{ end }}
     <div class="publication grow shrink-2 basis-3/4 my-1.5 mx-2">
         {{ range $author_index, $author_val := .authors }}
         {{ if $author_val.me }}

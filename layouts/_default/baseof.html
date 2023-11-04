@@ -10,8 +10,19 @@
     <main class="content h-card container mt-2 m-auto
                  leading-loose md:px-0 px-2 z-0"
           role="main">
+    {{ partial "info.html" . }}
     {{ block "main" . }}
     {{/* Main content of the page */}}
+    {{ end }}
+
+    {{ with .Params.Publications }}
+        <h2 id="publications">Publications</h2>
+    {{ end }}
+    {{ range .Params.Publications }}
+        {{ partial "publication.html" . }}
+    {{ end }}
+    {{ range .Params.Publications }}
+    {{ partial "modal_publication.html" . }}
     {{ end }}
     </main>
     {{ partial "footer.html" . }}
