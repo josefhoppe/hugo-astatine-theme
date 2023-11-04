@@ -54,7 +54,11 @@
                 {{ end }}
             </picture>
             {{ end }}
-            <br>
+            <div>
+            {{range .socials}}
+            <a href="{{ .link }}"><img src="{{ .icon }}" style="width:1.5em" class="inline dark:hidden" alt="{{ .alt }}" title="{{ .alt }}" /><img src="{{ .iconDark }}" style="width:1.5em" class="hidden dark:inline" alt="{{ .alt }}" /></a> &nbsp;
+            {{ end }}
+            </div>
             </div>
             {{ end }}
     </div>
